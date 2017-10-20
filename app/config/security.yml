@@ -4,17 +4,15 @@ security:
 
     # https://symfony.com/doc/current/security.html#b-configuring-how-users-are-loaded
     providers:
-        in_memory:
-            memory:
-                users:
-                    ryan:
-                        password: $2y$13$LjBTDk2NJmX8HMjh3TQdqOKY0IhdUy7PEM6SziYrupQLdFeY7Y/ee
-                        roles: 'ROLE_USER'
-                    admin:
-                        password: $2y$13$IcbeaGlOL8Ia4oHk9oVvvOuJsX2No/.4ixXn4So8ccnwvYoDEcYTW
-                        roles: 'ROLE_ADMIN'
+        our_db_provider:
+                    entity:
+                        class: AppBundle:User
+                        property: username
+                        # if you're using multiple entity managers
+                        # manager_name: customer
     encoders:
-        Symfony\Component\Security\Core\User\User: bcrypt
+            AppBundle\Entity\User:
+                algorithm: bcrypt
     role_hierarchy:
         ROLE_ADMIN:    ROLE_USER
         ROLE_SUPER_ADMIN: [ROLE_USER,ROLE_ADMIN,ROLE_ALLOW_TO_SWITCH]
@@ -26,6 +24,8 @@ security:
             security: false
 
         main:
+            pattern:    ^/
+            provider: our_db_provider
             anonymous: ~
             # activate different ways to authenticate
 
@@ -33,7 +33,9 @@ security:
             http_basic: ~
 
             # https://symfony.com/doc/current/security/form_login_setup.html
-            #form_login: ~
+            form_login:
+                login_path: login
+                check_path: login
     access_control:
         # require ROLE_ADMIN for /admin*
         - { path: ^/login, roles: IS_AUTHENTICATED_ANONYMOUSLY }

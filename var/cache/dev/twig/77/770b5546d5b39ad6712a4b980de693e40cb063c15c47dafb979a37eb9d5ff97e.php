@@ -15,11 +15,11 @@ class __TwigTemplate_4bb177b7a5d7f6b54e567686082257f165657b55087539c4bc329e7b2b6
 
     protected function doDisplay(array $context, array $blocks = array())
     {
-        $__internal_f9c7b622c9a6307b1fa9c849412f98ee79f0f5067e35b42a8a33a48730426e77 = $this->env->getExtension("Symfony\\Bundle\\WebProfilerBundle\\Twig\\WebProfilerExtension");
-        $__internal_f9c7b622c9a6307b1fa9c849412f98ee79f0f5067e35b42a8a33a48730426e77->enter($__internal_f9c7b622c9a6307b1fa9c849412f98ee79f0f5067e35b42a8a33a48730426e77_prof = new Twig_Profiler_Profile($this->getTemplateName(), "template", "security/login.html.twig"));
+        $__internal_51403833ffe6b699ac8707952919131eb1b94a4711c5f78d6c2240bbdbbda28b = $this->env->getExtension("Symfony\\Bundle\\WebProfilerBundle\\Twig\\WebProfilerExtension");
+        $__internal_51403833ffe6b699ac8707952919131eb1b94a4711c5f78d6c2240bbdbbda28b->enter($__internal_51403833ffe6b699ac8707952919131eb1b94a4711c5f78d6c2240bbdbbda28b_prof = new Twig_Profiler_Profile($this->getTemplateName(), "template", "security/login.html.twig"));
 
-        $__internal_03375cfbf30aba8d350d9f728238199bec453f3664505c2583532d5b6106821f = $this->env->getExtension("Symfony\\Bridge\\Twig\\Extension\\ProfilerExtension");
-        $__internal_03375cfbf30aba8d350d9f728238199bec453f3664505c2583532d5b6106821f->enter($__internal_03375cfbf30aba8d350d9f728238199bec453f3664505c2583532d5b6106821f_prof = new Twig_Profiler_Profile($this->getTemplateName(), "template", "security/login.html.twig"));
+        $__internal_81d9006291a02377531b0caa6958a480ceca2cf49566e09fe39224b5bdfe95a2 = $this->env->getExtension("Symfony\\Bridge\\Twig\\Extension\\ProfilerExtension");
+        $__internal_81d9006291a02377531b0caa6958a480ceca2cf49566e09fe39224b5bdfe95a2->enter($__internal_81d9006291a02377531b0caa6958a480ceca2cf49566e09fe39224b5bdfe95a2_prof = new Twig_Profiler_Profile($this->getTemplateName(), "template", "security/login.html.twig"));
 
         // line 3
         echo "
@@ -54,10 +54,10 @@ class __TwigTemplate_4bb177b7a5d7f6b54e567686082257f165657b55087539c4bc329e7b2b6
 </form>
 ";
         
-        $__internal_f9c7b622c9a6307b1fa9c849412f98ee79f0f5067e35b42a8a33a48730426e77->leave($__internal_f9c7b622c9a6307b1fa9c849412f98ee79f0f5067e35b42a8a33a48730426e77_prof);
+        $__internal_51403833ffe6b699ac8707952919131eb1b94a4711c5f78d6c2240bbdbbda28b->leave($__internal_51403833ffe6b699ac8707952919131eb1b94a4711c5f78d6c2240bbdbbda28b_prof);
 
         
-        $__internal_03375cfbf30aba8d350d9f728238199bec453f3664505c2583532d5b6106821f->leave($__internal_03375cfbf30aba8d350d9f728238199bec453f3664505c2583532d5b6106821f_prof);
+        $__internal_81d9006291a02377531b0caa6958a480ceca2cf49566e09fe39224b5bdfe95a2->leave($__internal_81d9006291a02377531b0caa6958a480ceca2cf49566e09fe39224b5bdfe95a2_prof);
 
     }
 
@@ -108,6 +108,6 @@ class __TwigTemplate_4bb177b7a5d7f6b54e567686082257f165657b55087539c4bc329e7b2b6
 
     <button type=\"submit\">login</button>
 </form>
-", "security/login.html.twig", "/home/yuriy/Documents/itransition-course-work/app/Resources/views/security/login.html.twig");
+", "security/login.html.twig", "/home/yuriy/Documents/icv_temp/app/Resources/views/security/login.html.twig");
     }
 }
