@@ -130,14 +130,80 @@ class appDevDebugProjectContainerUrlMatcher extends Symfony\Bundle\FrameworkBund
             return array (  '_controller' => 'AppBundle\\Controller\\DefaultController::indexAction',  '_route' => 'homepage',);
         }
 
+        if (0 === strpos($pathinfo, '/recover')) {
+            // recoverPassword
+            if ('/recoverPassword' === $pathinfo) {
+                if ('GET' !== $canonicalMethod) {
+                    $allow[] = 'GET';
+                    goto not_recoverPassword;
+                }
+
+                return array (  '_controller' => 'AppBundle\\Controller\\RecoverPathwordController::resetPasswordAction',  '_route' => 'recoverPassword',);
+            }
+            not_recoverPassword:
+
+            // recover
+            if ('/recover' === $pathinfo) {
+                if ('POST' !== $canonicalMethod) {
+                    $allow[] = 'POST';
+                    goto not_recover;
+                }
+
+                return array (  '_controller' => 'AppBundle\\Controller\\RecoverPathwordController::resetAction',  '_route' => 'recover',);
+            }
+            not_recover:
+
+        }
+
+        elseif (0 === strpos($pathinfo, '/registration')) {
+            // registration
+            if ('/registration' === $pathinfo) {
+                return array (  '_controller' => 'AppBundle\\Controller\\RegistrationController::registrationAction',  '_route' => 'registration',);
+            }
+
+            // app_user_registration
+            if ('/registration' === $pathinfo) {
+                return array (  '_controller' => 'AppBundle\\Controller\\UserController::registrationAction',  '_route' => 'app_user_registration',);
+            }
+
+        }
+
+        // password
+        if ('/password' === $pathinfo) {
+            if ('GET' !== $canonicalMethod) {
+                $allow[] = 'GET';
+                goto not_password;
+            }
+
+            return array (  '_controller' => 'AppBundle\\Controller\\RecoverPathwordController::passwordAction',  '_route' => 'password',);
+        }
+        not_password:
+
+        // setPassword
+        if ('/setPassword' === $pathinfo) {
+            if ('POST' !== $canonicalMethod) {
+                $allow[] = 'POST';
+                goto not_setPassword;
+            }
+
+            return array (  '_controller' => 'AppBundle\\Controller\\RecoverPathwordController::setPasswordAction',  '_route' => 'setPassword',);
+        }
+        not_setPassword:
+
+        // verifyEmail
+        if ('/verifyEmail' === $pathinfo) {
+            if ('GET' !== $canonicalMethod) {
+                $allow[] = 'GET';
+                goto not_verifyEmail;
+            }
+
+            return array (  '_controller' => 'AppBundle\\Controller\\RegistrationController::verifyEmailAction',  '_route' => 'verifyEmail',);
+        }
+        not_verifyEmail:
+
         // login
         if ('/login' === $pathinfo) {
             return array (  '_controller' => 'AppBundle\\Controller\\SecurityController::loginAction',  '_route' => 'login',);
-        }
-
-        // app_user_registration
-        if ('/registration' === $pathinfo) {
-            return array (  '_controller' => 'AppBundle\\Controller\\UserController::registrationAction',  '_route' => 'app_user_registration',);
         }
 
         throw 0 < count($allow) ? new MethodNotAllowedException(array_unique($allow)) : new ResourceNotFoundException();
