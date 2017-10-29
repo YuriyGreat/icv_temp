@@ -9,6 +9,8 @@
 namespace AppBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Validator\Constraints as Assert;
+use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
 use Symfony\Component\Security\Core\User\UserInterface;
 
 /**
@@ -28,11 +30,20 @@ class User implements UserInterface, \Serializable
      * @ORM\Column(type="string", length=25, unique=true)
      */
     private $username;
-
+    /**
+     * @Assert\NotBlank()
+     * @Assert\Length(max=4096)
+     */
+    private $plainPassword;
     /**
      * @ORM\Column(type="string", length=64)
      */
     private $password;
+
+    /**
+     * @ORM\Column(name="role", type="string", length=255)
+     */
+    private $role;
 
     /**
      * @ORM\Column(type="string", length=60, unique=true)
@@ -44,16 +55,41 @@ class User implements UserInterface, \Serializable
      */
     private $isActive;
 
+    /**
+     * @ORM\OneToOne(targetEntity="UserKey", mappedBy="user")
+     */
+    private $userKey;
+
     public function __construct()
     {
-        $this->isActive = true;
+        //$this->isActive = true;
         // may not be needed, see section on salt below
         // $this->salt = md5(uniqid('', true));
+    }
+
+    public function getId(): int
+    {
+        return $this->id;
+    }
+
+    public function setUsername(string $userName)
+    {
+        $this->username=$userName;
     }
 
     public function getUsername()
     {
         return $this->username;
+    }
+
+    public function setEmail(string $email)
+    {
+        $this->email = $email;
+    }
+
+    public function getEmail():? string
+    {
+        return $this->email;
     }
 
     public function getSalt()
@@ -63,14 +99,54 @@ class User implements UserInterface, \Serializable
         return null;
     }
 
+    public function setPassword(string $password)
+    {
+        $this->password = $password;
+    }
+
     public function getPassword()
     {
         return $this->password;
     }
 
+    public function setPlainPassword(string $plainPassword)
+    {
+        $this->plainPassword = $plainPassword;
+    }
+
+    public function getPlainPassword():? string
+    {
+        return $this->plainPassword;
+    }
+
+    public function setRole(string $role)
+    {
+        $this->role=$role;
+    }
+
     public function getRoles()
     {
-        return array('ROLE_USER');
+        return [$his->role];
+    }
+
+    public function setIsActive(bool $isActive)
+    {
+        $this->isActive = $isActive;
+    }
+
+    public function getIsActive(): bool
+    {
+        return $this->isActive;
+    }
+
+    public function setUserKey(UserKey $userKey)
+    {
+        $this->userKey = $userKey;
+    }
+
+    public function getUserKey():? UserKey
+    {
+        return $this->userKey;
     }
 
     public function eraseCredentials()
@@ -83,7 +159,9 @@ class User implements UserInterface, \Serializable
         return serialize(array(
             $this->id,
             $this->username,
+            $this->email,
             $this->password,
+            $this->isActive,
             // see section on salt below
             // $this->salt,
         ));
@@ -95,7 +173,9 @@ class User implements UserInterface, \Serializable
         list (
             $this->id,
             $this->username,
+            $this->email,
             $this->password,
+            $this->isActive,
             // see section on salt below
             // $this->salt
             ) = unserialize($serialized);

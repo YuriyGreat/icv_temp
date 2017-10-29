@@ -19,7 +19,7 @@ namespace Symfony\Component\HttpKernel\Profiler;
 class FileProfilerStorage implements ProfilerStorageInterface
 {
     /**
-     * Folder where profiler data are stored.
+     * Form where profiler data are stored.
      *
      * @var string
      */

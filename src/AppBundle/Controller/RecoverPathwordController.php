@@ -34,16 +34,9 @@ class RecoverPathwordController extends Controller
      * @Route("/recover", name="recover")
      * @Method("POST")
      */
-    public function resetAction(Request $request, RecoverManager $manager, \Swift_Mailer $mailer)
+    public function resetAction()
     {
-        $email = $request->request->get('Email');
-        if ($email !== null) {
-            $user = $manager->resetPassword($email);
-            if (($user !== null) && ($this->sendEmail($mailer, $user))) {
-                return $this->redirectToRoute('homepage');
-            }
-        }
-        return $this->render('default/error.html.twig');
+
     }
 
     /**
